@@ -12,9 +12,6 @@ def get_data(url, limit):
     negative = 0
     neutral = 0
     reviewLength = 0
-    ha = scrape(url)
-    if ha == -1:
-        return {"errors": "invalid url"}
     getCSV(url, limit)
     with open("Dataset/data.csv", mode="r") as csv_file:
         csv_reader = csv.DictReader(csv_file)
@@ -30,6 +27,8 @@ def get_data(url, limit):
             elif nScore > 0.5:
                 nText = nText + row["content"]
                 negative += 1
+            else:
+                neutral += 1
             reviewLength += 1
             # if cn == 20:
             #     break
@@ -38,8 +37,17 @@ def get_data(url, limit):
     result = dict()
     nSummarization = json.loads(summarization(nText))
     pSummarization = json.loads(summarization(pText))
-    result["negative"] = nSummarization["snippets"]
-    result["positive"] = pSummarization["snippets"]
-    result["pScore"] = (positive / reviewLength) * 100
-    result["nScore"] = (negative / reviewLength) * 100
+    if "snippets" in nSummarization:
+        result["negative"] = nSummarization["snippets"]
+    else:
+        result["negative"] = ["No negative reviews to show."]
+
+    if "snippets" in pSummarization:
+        result["positive"] = pSummarization["snippets"]
+    else:
+        result["positive"] = ["No positive reviews to show."]
+
+    result["pScore"] = round((positive / reviewLength) * 100, 2)
+    result["nScore"] = round((negative / reviewLength) * 100, 2)
+    result["neScore"] = round((neutral / reviewLength) * 100, 2)
     return result

@@ -1,0 +1,4 @@
+urlp:
+    css: 'a[data-hook="see-all-reviews-link-foot"]'
+    xpath: null
+    type: Link
