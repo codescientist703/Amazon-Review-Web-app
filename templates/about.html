@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block content %}
+<section id="hero" class="d-flex align-items-center">
+
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center">
+          <h1 >Select product from amazon now easily</h1>
+          <h2 >Selection of product made easy</h2>
+          <div >
+            <a href="{{url_for('home')}}" class="btn-get-started scrollto">Try Now</a>
+          </div>
+        </div>
+        <div class="col-lg-6 order-1 order-lg-2 hero-img" >
+          <img src="{{url_for('static', filename='assets/img/cart.png')}}" class="img-fluid animated" alt="">
+        </div>
+      </div>
+    </div>
+
+  </section><!-- End Hero -->
+
+  <main id="main">
+
+    <!-- ======= Clients Section ======= -->
+    <section id="clients" class="clients clients">
+      <div class="container">
+
+        <div class="row">
+
+          <div class="col-lg-2 col-md-4 col-6">
+          </div>
+
+        </div>
+      </div>
+    </section><!-- End Clients Section -->
+
+    <!-- ======= About Us Section ======= -->
+    <section id="about" class="about">
+      <div class="container">
+
+        <div class="section-title" >
+          <h2>About the application</h2>
+        </div>
+
+        <div class="row content">
+          <div class="col-lg-6"  >
+            <p>
+              This web application can hugely simplify the hassle of choosing online product.
+              This web application will try to solve that issue by scraping all the reviews and then applying
+              NLP to obtain summarisation of positive and negative reviews.
+            </p>
+            <ul>
+              <li><i class="ri-check-double-line"></i> Easy to use. Just type link of product</li>
+              <li><i class="ri-check-double-line"></i> Gives accurate result most of time</li>
+              <li><i class="ri-check-double-line"></i> Reasonably fast and secure</li>
+            </ul>
+          </div>
+          <div class="col-lg-6 pt-4 pt-lg-0"  >
+            <p>
+              The web application was created as a part of SGP project. The backend was built using flask and 
+              Microsoft Text Analytics. The frontend was made using bootstrap.
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </section><!-- End About Us Section -->
+{% endblock content %}

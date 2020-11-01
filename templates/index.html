@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="pricing-area mt-5" id="pricing">
+  <div class="container">
+    <div class="row">
+      <div class="col-xl-8 mx-auto">
+        <div class="section-title">
+          <form action="" method="post">
+            <h2>Enter the link of any product</h2>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Enter Link of product: </label>
+              <input type="text" name="search" id="" required class='form-control'>
+            </div>
+            <div class="form-group">
+              <label for="exampleInputEmail1">Enter number of</label>
+              <input type="number" name="limit" id="" required min='5' max='200' class='form-control'>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div>{{text["errors"]}}</div>
+    {%if text["positive"] %}
+    <div class="row">
+      <div class="col-xl-8 mx-auto text-center">
+        <div class="section-title">
+          <h2>Summarization</h2>
+          <p>Here are the analysis of top negative and positive reviews.</p>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="single-price">
+          <div class="price-title">
+          </div>
+          <div class="price-tag">
+            <h2>Positive reviews</h2>
+          </div>
+          <div class="price-item">
+            <ul>
+              {% for item in text["positive"] %}
+              <li>{{item}}</li>
+              <!-- <li>100 Google AdWords</li>
+              <li>100 Domain Hosting</li>
+              <li>SSL Shopping Cart</li>
+              <li>24/7 Live Support</li> -->
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="single-price">
+          <div class="price-title">
+          </div>
+          <div class="price-tag center">
+            <h2>Negative reviews</h2>
+          </div>
+          <div class="price-item">
+            <ul>
+              {% for item in text["negative"] %}
+              <li>{{item}}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="col-xl-8 mx-auto text-center">
+        <div class="section-title">
+          <h2>Distribution</h2>
+          <div class="progress">
+            <div class="progress-bar bg-success" role="progressbar" style="width: {{text.pScore}}%" >Postive {{text["pScore"]}}%</div>
+          </div>
+          <div class="progress mt-5">
+            <div class="progress-bar bg-danger" role="progressbar" style="width: {{text.nScore}}%" >Negative {{text["nScore"]}}%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock content %}
