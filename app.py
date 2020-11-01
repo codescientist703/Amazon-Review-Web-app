@@ -17,7 +17,6 @@ def home():
         url = request.form.get("search")
         limit = int(request.form.get("limit"))
         ha = get_data(url, limit)
-        print(ha)
     return render_template("index.html", text=ha)
 
 
